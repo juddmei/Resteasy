@@ -77,10 +77,9 @@ public class SelfExpandingBufferredInputStream extends BufferedInputStream
     */
    private void expand() throws IOException
    {
-      marklimit = marklimit * 2 > Integer.MAX_VALUE ? (Integer.MAX_VALUE - 8) : marklimit * 2;
       int lastPos = pos;
       super.reset();
-      super.mark(marklimit * 2);
+      super.mark(marklimit * 2 > Integer.MAX_VALUE ? (Integer.MAX_VALUE - 8) : marklimit * 2);
       pos = lastPos;
    }
 
